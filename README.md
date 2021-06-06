@@ -1,3 +1,3 @@
-# Created By Me and Gustavo Sousa Turma 10 Tribo A
+# created by me, with a little help from Gustavo Sousa
 
 ## Under Construction....
