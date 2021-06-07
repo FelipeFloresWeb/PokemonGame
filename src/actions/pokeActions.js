@@ -7,6 +7,7 @@ export const SELECT_POKEMON = 'SELECT_POKEMON';
 export const GET_POKEMONS_INFO = 'GET_POKEMONS_INFO';
 export const GET_POKEMONS_INFO_SUCESS = 'GET_POKEMONS_INFO_SUCESS';
 export const GET_POKEMONS_INFO_ERROR = 'GET_POKEMONS_INFO_ERROR';
+export const GET_POKEMONS_INFO_COMPLETE = 'GET_POKEMONS_INFO_COMPLETE';
 
 export const getPokemons = () => ({
   type: GET_POKEMONS,
@@ -36,11 +37,16 @@ export const getPokemonsInfoError = (payload) => ({
   payload
 });
 
+export const getPokemonsInfoComplete = () => ({
+  type: GET_POKEMONS_INFO_COMPLETE,
+});
+
 
 export const getPokemonsThunk = (limit, offset) => (dispatch) => {
   // is loading true
-  dispatch(getPokemonsInfo());
-
+  dispatch(getPokemons());
+  const responseApi = [];
+  console.log(responseApi);
   // chama a api
   getAllPokemons(limit, offset)
     .then((res) => { // deu certo a chamada da api
@@ -48,24 +54,35 @@ export const getPokemonsThunk = (limit, offset) => (dispatch) => {
       dispatch(getPokemonsSucess({
         pokemons: results,
       })); // atualizar o estado global
+      results.forEach((pokemon) => {
+        getInfoPokemons(pokemon.url)
+        .then((res) => { // deu certo a chamada da api
+          responseApi.push(res)
+          if(responseApi.length > 19) {
+            dispatch(getPokemonsInfoSucess({
+              pokemonsInfo: responseApi,
+            })); // atualizar o estado global
+            dispatch(getPokemonsInfoComplete());
+          }
+          })
+      })
     })
     .catch(() => { getPokemonsError(); }); // atualizar o estado global com erro
 };
 
-export const getPokemonsInfoThunk = (url) => (dispatch) => {
-  // is loading true
-  // dispatch(getPokemons());
+//  const getPokemonsInfoThunk = (url) => (dispatch) => {
+//   // is loading true
+//   // dispatch(getPokemons());
 
-  // chama a api
-  getInfoPokemons(url)
-    .then((res) => { // deu certo a chamada da api
-      console.log(res);
-      dispatch(getPokemonsInfoSucess({
-        pokemonsInfo: [res],
-      })); // atualizar o estado global
-    })
-    .catch(() => { getPokemonsError(); }); // atualizar o estado global com erro
-};
+//   // chama a api
+//   getInfoPokemons(url)
+//   .then((res) => { // deu certo a chamada da api
+//       dispatch(getPokemonsInfoSucess({
+//         pokemonsInfo: res,
+//       })); // atualizar o estado global
+//     })
+//     .catch(() => { getPokemonsError(); }); // atualizar o estado global com erro
+// };
 
 
 export const selectPokemon = (payload) => ({

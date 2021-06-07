@@ -44,9 +44,13 @@
   border-bottom: solid 1px black;
 }
 
-#pokemons {
+.pokemons {
   display: flex;
   justify-content: center;
+}
+
+.input-radio {
+  display: none;
 }
 
 .App-logo {

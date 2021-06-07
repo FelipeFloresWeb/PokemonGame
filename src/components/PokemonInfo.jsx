@@ -4,21 +4,19 @@ import './pokemonInfo.css';
 class PokemonInfo extends Component {
   render() {
     const { info } = this.props;
-    console.log(info);
-    if (info.length < 1) return <div>No information request so far...</div>
+    if (!info.name) return <div>Select an Pokemon to see more information about it...</div>
     return (
       <div className="pokemon-card">
-      {info.map((pokemon, index) => (
-        <div key={index}>
-         <p>{pokemon.name}</p>
-         <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-         <p>{`Base experience: ${pokemon.base_experience} points`}</p>
-         <p>{`Wheight: ${pokemon.height * 10}Kg`}</p>
-         {pokemon.stats.map((stat) => (
-           <p>{`${stat.stat.name}: ${stat.base_stat} points`}</p>
+        <div>
+         <p>{info.name}</p>
+         <img src={info.sprites.front_default} alt={info.name} />
+         <p>{`Base experience: ${info.base_experience} points`}</p>
+         <p>{`Wheight: ${info.height * 10}Kg`}</p>
+         {info.stats.map((pokemon) => (
+           <p key={`${info.name}${pokemon.stat.name}`}>{`${pokemon.stat.name}: ${pokemon.base_stat} points`}</p>
          ))}
         </div>
-      ))}
+      
       </div>
     );
   }

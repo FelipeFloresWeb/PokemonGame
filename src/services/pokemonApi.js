@@ -17,19 +17,3 @@ export const getInfoPokemons = async (url) => {
     return error;
   }
 };
-
-export const getInfosPokemons = async (url) => {
-  const infos = [];
-  try {
-    url.forEach(async (data) => {
-      const getData = await fetch(url);
-      const getPokemons = await getData.json();
-      infos.push(getPokemons);
-    })
-    return infos;
-
-    // return getPokemons;
-  } catch(error) {
-    return error;
-  }
-};
