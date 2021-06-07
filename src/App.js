@@ -45,7 +45,6 @@ constructor() {
   
   render() {
     const { pokemons, selectedPokemon, select, isLoading, pokemonsInfo, getInfoPokemons } = this.props;
-    console.log(pokemonsInfo);
     if (isLoading) return (
       <div className="App">
       <h2>Pokemon Wiki</h2>
@@ -56,7 +55,9 @@ constructor() {
       <div className="App">
        <h2>Pokemon Wiki</h2>
        <h3>Pokemon selecionado: {selectedPokemon}</h3>
+       <div className="card">
        <PokemonInfo info = {pokemonsInfo} />
+       </div>
        <button type='button' onClick={() => this.previousPokemons()}>See previous pokemons...</button>
        <button type='button' onClick={() => this.nextPokemons()}>See next pokemons...</button>
        { pokemons.map((pokemon, index) => (

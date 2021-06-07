@@ -1,0 +1,10 @@
+.pokemon-card {
+  box-sizing: border-box;
+  width: fit-content;
+  display: flex;
+  flex-wrap: wrap;
+  border: solid 1px black;
+  border-radius: 10px;
+  justify-content: center;
+  padding: 10px;
+}

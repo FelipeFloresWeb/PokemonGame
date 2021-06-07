@@ -12,7 +12,7 @@ const INITIAL_STATE = {
   isLoading: false,
   error: null,
   pokemons: [],
-  pokemonsInfo: {},
+  pokemonsInfo: [],
   selectedPokemon: '',
 };
 
