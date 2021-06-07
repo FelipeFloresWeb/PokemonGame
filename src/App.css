@@ -20,7 +20,7 @@
   border: solid 1px black;
   border-bottom: solid 5px black;;
   border-radius: 10px;
-  max-width: max-content;
+  max-width: 200px;
   padding: 10px;
   background-color: rgb(146, 223, 46);
   transition: 0.4s;
@@ -52,6 +52,13 @@
 .pokeButton:active {
   margin-top: 4px;
   border-bottom: solid 1px black;
+}
+
+.pokemon-cards {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 10px;
 }
 
 .pokemons {
