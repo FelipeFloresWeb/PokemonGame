@@ -1,8 +1,14 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, } from '@testing-library/react';
+import React from 'react';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const title = screen.getByText(/Pokemon Wiki/i);
-  expect(title).toBeInTheDocument();
+describe('Test of component App', () => {
+  // beforeEach(cleanup);
+  test('The page should has a title', () => {
+    const { queryByText } = renderWithRedux(<App />);
+    const buttonAdicionar = queryByText('Clique aqui');
+
+    expect(buttonAdicionar).toBeInTheDocument();
+    expect(queryByText('0')).toBeInTheDocument();
+  });
 });

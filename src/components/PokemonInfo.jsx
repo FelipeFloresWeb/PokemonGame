@@ -11,7 +11,7 @@ class PokemonInfo extends Component {
          <p>{info.name}</p>
          <img src={info.sprites.front_default} alt={info.name} />
          <p>{`Base experience: ${info.base_experience} points`}</p>
-         <p>{`Wheight: ${info.weight}`}</p>
+         <p>{`Weight: ${info.weight}`}</p>
          {info.stats.map((pokemon) => (
            <p key={`${info.name}${pokemon.stat.name}`}>{`${pokemon.stat.name}: ${pokemon.base_stat} points`}</p>
          ))}
