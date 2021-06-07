@@ -5,7 +5,7 @@ class PokemonInfo extends Component {
   render() {
     const { info } = this.props;
     console.log(info);
-    if (info.length < 1) return <div>Loading informations...</div>
+    if (info.length < 1) return <div>No information request so far...</div>
     return (
       <div className="pokemon-card">
       {info.map((pokemon, index) => (

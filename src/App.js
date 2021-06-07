@@ -61,9 +61,11 @@ constructor() {
        <button type='button' onClick={() => this.previousPokemons()}>See previous pokemons...</button>
        <button type='button' onClick={() => this.nextPokemons()}>See next pokemons...</button>
        { pokemons.map((pokemon, index) => (
-         <div key={index}>
-         <div onClick={() => select(pokemon.name)}>{pokemon.name}</div>
-         <button type="button" onClick={() => getInfoPokemons(pokemon.url) }>More Informations...</button>        
+         <div id="pokemons" key={index}>
+         <div className="pokeCard" onClick={() => select(pokemon.name)}>
+           <p>{`Click here to select ${pokemon.name}...`}</p>
+           </div>
+         <button className="pokeButton" type="button" onClick={() => getInfoPokemons(pokemon.url) }>Click here for more Informations...</button>        
          </div>
        )) }
       </div>

@@ -61,7 +61,7 @@ export const getPokemonsInfoThunk = (url) => (dispatch) => {
     .then((res) => { // deu certo a chamada da api
       console.log(res);
       dispatch(getPokemonsInfoSucess({
-        pokemonsInfo: res,
+        pokemonsInfo: [res],
       })); // atualizar o estado global
     })
     .catch(() => { getPokemonsError(); }); // atualizar o estado global com erro

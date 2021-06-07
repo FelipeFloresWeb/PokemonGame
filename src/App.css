@@ -8,6 +8,47 @@
   margin: 2% auto;
 }
 
+.pokeCard {
+  display: flex;
+  border: solid 1px black;
+  border-bottom: solid 5px black;;
+  border-radius: 10px;
+  max-width: max-content;
+  padding: 10px;
+}
+
+.pokeCard:hover {
+  cursor: pointer;
+}
+
+.pokeCard:active {
+  cursor: pointer;
+  margin-top: 4px;
+  border-bottom: solid 1px black;
+}
+
+.pokeButton {
+  display: flex;
+  padding: 10px;
+  border-radius: 10px;
+  border-bottom: solid 5px black;
+  background-color: rgb(153, 100, 35);
+}
+
+.pokeButton:hover {
+  cursor: pointer;
+}
+
+.pokeButton:active {
+  margin-top: 4px;
+  border-bottom: solid 1px black;
+}
+
+#pokemons {
+  display: flex;
+  justify-content: center;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
