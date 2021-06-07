@@ -91,17 +91,19 @@ constructor() {
        </div>
        <button type='button' className="page-button" onClick={this.previousPokemons}>See previous pokemons...</button>
        <button type='button' className="page-button" onClick={this.nextPokemons}>See next pokemons...</button>
+       <div className="pokemon-cards">
        { pokemonsInfo.map((pokemon) => (
          <label key={pokemon.name} htmlFor={pokemon.name}>
-           <input className="input-radio pokeCard" id={pokemon.name} onClick={this.selectPokemon} name="selected" type="radio" value={pokemon.name}/>
-         <div className="pokemons" key={pokemon.name}>
-         <div className="pokeCard" >
-           <h3>{`Click here to select ${pokemon.name}...`}</h3>
-           <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-           </div>
-         </div>
+            <div className="pokeCard" >
+             <input className="input-radio pokeCard pokemons" id={pokemon.name} onClick={this.selectPokemon} name="selected" type="radio" value={pokemon.name}/>
+           {/* <div className="pokemons" key={pokemon.name}> */}
+             <h3>{`Click here to select ${pokemon.name}...`}</h3>
+             <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+            </div>
+         {/* </div> */}
          </label>
        )) }
+       </div>
       </div>
     );
   }
