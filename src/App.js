@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import './App.css';
-import {selectPokemon, getPokemonsThunk, getPokemonsInfoThunk} from './actions/pokeActions';
+import {selectPokemon, getPokemonsThunk} from './actions/pokeActions';
 import PokemonInfo from './components/PokemonInfo';
 
 class App extends Component {
@@ -55,7 +55,7 @@ constructor() {
   }
   
   render() {
-    const { pokemons, selectedPokemon, select, isLoading, pokemonsInfo, /* getInfoPokemons */ } = this.props;
+    const { pokemons, selectedPokemon, isLoading } = this.props;
     if (isLoading) return (
       <div className="App">
       <h2>Pokemon Wiki</h2>
@@ -93,7 +93,6 @@ constructor() {
 const mapDispatchToProps = (dispatch) => ({
   getPokemons: (limit, offset) => dispatch(getPokemonsThunk(limit, offset)),
   select: (pokemon) => dispatch(selectPokemon(pokemon)),
-  // getInfoPokemons: (url) => dispatch(getPokemonsInfoThunk(url)),
 });
 
 const mapStateToProps = ({pokeReducer: { pokemons, selectedPokemon, isLoading, pokemonsInfo }}) => ({
