@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/pokemon-game/static/css/main.65df1bc5.chunk.css",
-    "main.js": "/pokemon-game/static/js/main.fe94f6a9.chunk.js",
-    "main.js.map": "/pokemon-game/static/js/main.fe94f6a9.chunk.js.map",
-    "runtime-main.js": "/pokemon-game/static/js/runtime-main.e1073441.js",
-    "runtime-main.js.map": "/pokemon-game/static/js/runtime-main.e1073441.js.map",
-    "static/js/2.cfb1c64c.chunk.js": "/pokemon-game/static/js/2.cfb1c64c.chunk.js",
-    "static/js/2.cfb1c64c.chunk.js.map": "/pokemon-game/static/js/2.cfb1c64c.chunk.js.map",
-    "static/js/3.399f3556.chunk.js": "/pokemon-game/static/js/3.399f3556.chunk.js",
-    "static/js/3.399f3556.chunk.js.map": "/pokemon-game/static/js/3.399f3556.chunk.js.map",
-    "index.html": "/pokemon-game/index.html",
-    "static/css/main.65df1bc5.chunk.css.map": "/pokemon-game/static/css/main.65df1bc5.chunk.css.map",
-    "static/js/2.cfb1c64c.chunk.js.LICENSE.txt": "/pokemon-game/static/js/2.cfb1c64c.chunk.js.LICENSE.txt"
+    "main.css": "/PokemonGame/static/css/main.65df1bc5.chunk.css",
+    "main.js": "/PokemonGame/static/js/main.fe94f6a9.chunk.js",
+    "main.js.map": "/PokemonGame/static/js/main.fe94f6a9.chunk.js.map",
+    "runtime-main.js": "/PokemonGame/static/js/runtime-main.ca27252b.js",
+    "runtime-main.js.map": "/PokemonGame/static/js/runtime-main.ca27252b.js.map",
+    "static/js/2.cfb1c64c.chunk.js": "/PokemonGame/static/js/2.cfb1c64c.chunk.js",
+    "static/js/2.cfb1c64c.chunk.js.map": "/PokemonGame/static/js/2.cfb1c64c.chunk.js.map",
+    "static/js/3.399f3556.chunk.js": "/PokemonGame/static/js/3.399f3556.chunk.js",
+    "static/js/3.399f3556.chunk.js.map": "/PokemonGame/static/js/3.399f3556.chunk.js.map",
+    "index.html": "/PokemonGame/index.html",
+    "static/css/main.65df1bc5.chunk.css.map": "/PokemonGame/static/css/main.65df1bc5.chunk.css.map",
+    "static/js/2.cfb1c64c.chunk.js.LICENSE.txt": "/PokemonGame/static/js/2.cfb1c64c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.e1073441.js",
+    "static/js/runtime-main.ca27252b.js",
     "static/js/2.cfb1c64c.chunk.js",
     "static/css/main.65df1bc5.chunk.css",
     "static/js/main.fe94f6a9.chunk.js"
