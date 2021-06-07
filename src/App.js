@@ -79,6 +79,7 @@ constructor() {
        <h3>Pokemon selecionado:<PokemonInfo info = {selectedPokemon} /></h3>
        </div>
        <h2>Loading Pokemons...</h2>
+       <h2>Created By Felipe Flores</h2>
        </div>
     );
     return (
@@ -104,6 +105,7 @@ constructor() {
          </label>
        )) }
        </div>
+       <h2>Created By Felipe Flores</h2>
       </div>
     );
   }
