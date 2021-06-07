@@ -63,6 +63,21 @@
   display: none;
 }
 
+.page-button {
+  border-bottom: solid 5px black;
+  background-color: rgb(210, 111, 30);
+  padding: 10px;
+  transition: 0.2s;
+  margin: 20px;
+  font-size: 15px;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.page-button:hover {
+  background-color: rgb(165, 144, 25);
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

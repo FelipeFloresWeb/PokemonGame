@@ -21,7 +21,12 @@ constructor() {
     getPokemons(limit, offset);
   }
 
-  nextPokemons = async () => {
+  nextPokemons = async (event) => {
+    const { target } = event;
+    if (this.state.offset === 480) {
+      target.innerHTML = 'No have more pokemons...';
+      return target.setAttribute('disable', '');
+    }
     const { getPokemons } = this.props;
     await this.setState((previousState) => ({
       offset: previousState.offset + 20,
@@ -36,10 +41,10 @@ constructor() {
 
   previousPokemons = async (event) => {
     const { target } = event;
-    console.log(target);
     const { getPokemons } = this.props;
     if (this.state.offset === 0) {
-      return true;
+      target.innerHTML = 'Here are the first pokemons...';
+      return target.setAttribute('disable', '');
     }
     await this.setState((previousState) => ({
       offset: previousState.offset - 20,
@@ -84,8 +89,8 @@ constructor() {
        <div className="card">
        <h3>Pokemon selecionado:<PokemonInfo info = {selectedPokemon} /></h3>
        </div>
-       <button type='button' onClick={this.previousPokemons}>See previous pokemons...</button>
-       <button type='button' onClick={this.nextPokemons}>See next pokemons...</button>
+       <button type='button' className="page-button" onClick={this.previousPokemons}>See previous pokemons...</button>
+       <button type='button' className="page-button" onClick={this.nextPokemons}>See next pokemons...</button>
        { pokemonsInfo.map((pokemon) => (
          <label key={pokemon.name} htmlFor={pokemon.name}>
            <input className="input-radio pokeCard" id={pokemon.name} onClick={this.selectPokemon} name="selected" type="radio" value={pokemon.name}/>
