@@ -1,5 +1,12 @@
+* {
+  margin : 0;
+  padding: 0;
+}
+
 .App {
   text-align: center;
+  padding: 0 2%;
+  background-color: yellow;
 }
 
 .card {
@@ -15,10 +22,13 @@
   border-radius: 10px;
   max-width: max-content;
   padding: 10px;
+  background-color: rgb(146, 223, 46);
+  transition: 0.4s;
 }
 
 .pokeCard:hover {
   cursor: pointer;
+  background-color: rgb(52, 134, 19);
 }
 
 .pokeCard:active {

@@ -46,7 +46,6 @@ export const getPokemonsThunk = (limit, offset) => (dispatch) => {
   // is loading true
   dispatch(getPokemons());
   const responseApi = [];
-  console.log(responseApi);
   // chama a api
   getAllPokemons(limit, offset)
     .then((res) => { // deu certo a chamada da api

@@ -10,6 +10,8 @@ constructor() {
   this.state = {
     limit: 20,
     offset: 0,
+    // firstPokemons: 'There are no more pokemons...',
+    // lastPokemons: 'There are no more pokemons...',
   }
 }
 
@@ -23,14 +25,22 @@ constructor() {
     const { getPokemons } = this.props;
     await this.setState((previousState) => ({
       offset: previousState.offset + 20,
-    }));
+    }), async () => {
+      if (this.state.offset > 480) {
+        await this.setState({ offset: 480 })
+      }
+    });
     const { offset, limit } = this.state;
     getPokemons(limit, offset);
   }
 
-  previousPokemons   = async () => {
+  previousPokemons = async (event) => {
+    const { target } = event;
+    console.log(target);
     const { getPokemons } = this.props;
-    if (this.state.offset === 0) return true;
+    if (this.state.offset === 0) {
+      return true;
+    }
     await this.setState((previousState) => ({
       offset: previousState.offset - 20,
     }));
@@ -46,7 +56,6 @@ constructor() {
   selectPokemon = (event) => {
     const { pokemonsInfo, select } = this.props;
     const { id } = event.target;
-    console.log(event.target);
     const pokemonFound = pokemonsInfo.find((pokemon) => {
       return pokemon.name === id
     });
@@ -55,32 +64,35 @@ constructor() {
   }
   
   render() {
-    const { pokemons, selectedPokemon, isLoading } = this.props;
+    const { pokemons, selectedPokemon, isLoading, pokemonsInfo } = this.props;
     if (isLoading) return (
       <div className="App">
-      <h2>Pokemon Wiki</h2>
-      <h3>Pokemon selecionado: {selectedPokemon.name}</h3>
-      <div className="card">
-      <PokemonInfo info = {selectedPokemon} />
-      </div>
-      <h2>Loading Pokemons...</h2>
-      </div>
+       <h2>Welcome to Pokemon game!</h2>       
+       <h3>Here you will find a lot of information about each pokemon. We have a list of 500 pokemons.</h3>
+       <h2>To start select a pokemon...</h2>
+       <div className="card">
+       <h3>Pokemon selecionado:<PokemonInfo info = {selectedPokemon} /></h3>
+       </div>
+       <h2>Loading Pokemons...</h2>
+       </div>
     );
     return (
       <div className="App">
-       <h2>Pokemon Wiki</h2>
-       <h3>Pokemon selecionado: {selectedPokemon.name}</h3>
+       <h2>Welcome to Pokemon game!</h2>       
+       <h3>Here you will find a lot of information about each pokemon. We have a list of 500 pokemons.</h3>
+       <h2>To start select a pokemon...</h2>
        <div className="card">
-       <PokemonInfo info = {selectedPokemon} />
+       <h3>Pokemon selecionado:<PokemonInfo info = {selectedPokemon} /></h3>
        </div>
-       <button type='button' onClick={() => this.previousPokemons()}>See previous pokemons...</button>
-       <button type='button' onClick={() => this.nextPokemons()}>See next pokemons...</button>
-       { pokemons.map((pokemon) => (
+       <button type='button' onClick={this.previousPokemons}>See previous pokemons...</button>
+       <button type='button' onClick={this.nextPokemons}>See next pokemons...</button>
+       { pokemonsInfo.map((pokemon) => (
          <label key={pokemon.name} htmlFor={pokemon.name}>
-           <input className="input-radio" id={pokemon.name} onClick={this.selectPokemon} name="selected" type="radio" value={pokemon.name}/>
+           <input className="input-radio pokeCard" id={pokemon.name} onClick={this.selectPokemon} name="selected" type="radio" value={pokemon.name}/>
          <div className="pokemons" key={pokemon.name}>
          <div className="pokeCard" >
-           <p>{`Click here to select ${pokemon.name}...`}</p>
+           <h3>{`Click here to select ${pokemon.name}...`}</h3>
+           <img src={pokemon.sprites.front_default} alt={pokemon.name} />
            </div>
          </div>
          </label>
