@@ -42,6 +42,7 @@ export const getPokemonsInfoComplete = () => ({
 });
 
 
+
 export const getPokemonsThunk = (limit, offset) => (dispatch) => {
   // is loading true
   dispatch(getPokemons());

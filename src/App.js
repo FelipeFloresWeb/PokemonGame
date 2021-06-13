@@ -25,7 +25,7 @@ constructor() {
     const { target } = event;
     if (this.state.offset === 480) {
       target.innerHTML = 'No have more pokemons...';
-      return target.setAttribute('disable', '');
+      return target.setAttribute('disabled', '');
     }
     const { getPokemons } = this.props;
     await this.setState((previousState) => ({
@@ -44,7 +44,7 @@ constructor() {
     const { getPokemons } = this.props;
     if (this.state.offset === 0) {
       target.innerHTML = 'Here are the first pokemons...';
-      return target.setAttribute('disable', '');
+      return target.setAttribute('disabled', '');
     }
     await this.setState((previousState) => ({
       offset: previousState.offset - 20,

@@ -17,6 +17,14 @@ const INITIAL_STATE = {
   selectedPokemon: {},
 };
 
+const orderArrayExpense = (a, b) => {
+  const positionInArray = -1;
+  if (a.id < b.id) {
+    return positionInArray;
+  } if (b.id < a.id) return 1;
+  return 0;
+};
+
 function pokeReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case GET_POKEMONS:
@@ -28,7 +36,7 @@ function pokeReducer(state = INITIAL_STATE, action) {
       case GET_POKEMONS_INFO:
       return {...state, isLoading: true};
       case GET_POKEMONS_INFO_SUCESS:
-      return {...state, pokemonsInfo: action.payload.pokemonsInfo };
+      return {...state, pokemonsInfo: action.payload.pokemonsInfo.sort(orderArrayExpense) };
       case GET_POKEMONS_INFO_ERROR:
       return {...state, isLoading: false, error: action.payload.error };
       case GET_POKEMONS_INFO_COMPLETE:
