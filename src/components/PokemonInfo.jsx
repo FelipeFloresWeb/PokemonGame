@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import './pokemonInfo.css';
 
 function PokemonInfo(props) {
-  const { selectedPokemon } = props;
+  const { selectedPokemon, info } = props;
+  console.log(selectedPokemon, info);
   if (!selectedPokemon) {
     return (
       <div>

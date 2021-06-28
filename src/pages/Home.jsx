@@ -1,37 +1,61 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getPokemonsError,
   getPokemonsSucess, selectPokemon } from '../actions/pokeActions';
 import PokemonInfo from '../components/PokemonInfo';
 import getAllPokemons from '../services/pokemonApi';
-// import PokemonInfo from '../components/PokemonInfo';
-// import getAllPokemons from '../services/pokemonApi';
+
+const POKEMONS_LENGTH = 20;
 
 function Home(props) {
-  const { apiError, getPokemons, pokemonsInfo,
+  const { apiError, getPokemons, allPokemonsArr,
     error, select, isLoading } = props;
-  // const [pokemons, setPokemons] = useState([]);
-  // const [loading, setLoading] = useState(true);
+
+  const [pokemonsOffset, setPokemonsOfSet] = (useState(0));
+  const [pokemonsInScreen, setPokemonsInScreen] = (useState(POKEMONS_LENGTH));
+
+  const POKEMONS_ARR_LENGTH = allPokemonsArr.length;
+  const LIMIT_POKEMONS_SCREEN = pokemonsInScreen === POKEMONS_ARR_LENGTH;
+
+  const showingPokemons = () => {
+    const pokemons = [];
+    for (let index = pokemonsOffset; index < pokemonsInScreen; index += 1) {
+      pokemons.push(allPokemonsArr[index]);
+    }
+    return pokemons;
+  };
 
   useEffect(() => {
     const load = async () => {
       try {
         const apiResult = await getAllPokemons();
-        console.log(apiResult);
-        await getPokemons(apiResult);
+        const sortResult = apiResult.sort((a, b) => a.id - b.id);
+        await getPokemons(sortResult);
       } catch (err) {
         apiError(err);
       }
     };
     load();
-    // setLoading(false);
   }, []);
+
   function selectCurrPokemon(event) {
     const { id } = event.target;
-    const pokemonFound = pokemonsInfo.find((pokemon) => pokemon.name === id);
-    if (pokemonFound) return select(pokemonFound);
+    const pokemonFound = allPokemonsArr.find((pokemon) => pokemon.name === id);
+    if (pokemonFound) select(pokemonFound);
+    return pokemonFound;
   }
+
+  const nextPokemons = () => {
+    setPokemonsOfSet(pokemonsOffset + POKEMONS_LENGTH);
+    setPokemonsInScreen(pokemonsInScreen + POKEMONS_LENGTH);
+  };
+
+  const previousPokemons = () => {
+    setPokemonsOfSet(pokemonsOffset - POKEMONS_LENGTH);
+    setPokemonsInScreen(pokemonsInScreen - POKEMONS_LENGTH);
+  };
+
   if (error) return <h2>{ error }</h2>;
   if (isLoading) return <h2>carregando...</h2>;
   return (
@@ -48,14 +72,24 @@ function Home(props) {
           <PokemonInfo info={ selectCurrPokemon } />
         </h3>
       </div>
-      {/* <button type="button" className="page-button" onClick={ previousPokemons }>
-          See previous pokemons...
-        </button>
-        <button type="button" className="page-button" onClick={ nextPokemons }>
-          See next pokemons...
-        </button> */}
+      <button
+        type="button"
+        disabled={ pokemonsOffset === 0 }
+        className="page-button"
+        onClick={ previousPokemons }
+      >
+        See previous pokemons...
+      </button>
+      <button
+        type="button"
+        disabled={ LIMIT_POKEMONS_SCREEN }
+        className="page-button"
+        onClick={ nextPokemons }
+      >
+        See next pokemons...
+      </button>
       <div className="pokemon-cards">
-        { pokemonsInfo.map((pokemon) => (
+        { showingPokemons().map((pokemon) => (
           <label key={ pokemon.name } htmlFor={ pokemon.name }>
             <div className="pokeCard">
               <input
@@ -83,10 +117,10 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = ({ pokeReducer:
-  { isLoading, selectedPokemon, pokemonsInfo } }) => ({
+  { isLoading, selectedPokemon, allPokemonsArr } }) => ({
   isLoading,
   selectedPokemon,
-  pokemonsInfo,
+  allPokemonsArr,
 });
 
 Home.propTypes = {
