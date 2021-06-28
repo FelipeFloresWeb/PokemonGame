@@ -5,12 +5,13 @@ import { getPokemonsError,
   getPokemonsSucess, selectPokemon } from '../actions/pokeActions';
 import PokemonInfo from '../components/PokemonInfo';
 import getAllPokemons from '../services/pokemonApi';
+import Loading from '../components/Loading';
 
 const POKEMONS_LENGTH = 20;
 
 function Home(props) {
   const { apiError, getPokemons, allPokemonsArr,
-    error, select, isLoading } = props;
+    error, select, isLoading, selectedPokemon } = props;
 
   const [pokemonsOffset, setPokemonsOfSet] = (useState(0));
   const [pokemonsInScreen, setPokemonsInScreen] = (useState(POKEMONS_LENGTH));
@@ -43,7 +44,6 @@ function Home(props) {
     const { id } = event.target;
     const pokemonFound = allPokemonsArr.find((pokemon) => pokemon.name === id);
     if (pokemonFound) select(pokemonFound);
-    return pokemonFound;
   }
 
   const nextPokemons = () => {
@@ -56,8 +56,12 @@ function Home(props) {
     setPokemonsInScreen(pokemonsInScreen - POKEMONS_LENGTH);
   };
 
+  const nexPage = () => {
+    ;
+  };
+
   if (error) return <h2>{ error }</h2>;
-  if (isLoading) return <h2>carregando...</h2>;
+  if (isLoading) return <h2><Loading /></h2>;
   return (
     <div>
       <h2>Welcome to Pokemon game!</h2>
@@ -67,15 +71,17 @@ function Home(props) {
       </h3>
       <h2>To start select a pokemon...</h2>
       <div className="card">
-        <h3>
-          Pokemon selecionado:
-          <PokemonInfo info={ selectCurrPokemon } />
-        </h3>
+        <PokemonInfo pokemon={ selectedPokemon } />
       </div>
+      <button type="button" onClick={ nexPage }>
+        <Link to="/battlePreparation">
+          Next!
+        </Link>
+      </button>
       <button
         type="button"
         disabled={ pokemonsOffset === 0 }
-        className="page-button"
+        className="pokeButton"
         onClick={ previousPokemons }
       >
         See previous pokemons...
@@ -83,7 +89,7 @@ function Home(props) {
       <button
         type="button"
         disabled={ LIMIT_POKEMONS_SCREEN }
-        className="page-button"
+        className="pokeButton"
         onClick={ nextPokemons }
       >
         See next pokemons...
@@ -92,16 +98,23 @@ function Home(props) {
         { showingPokemons().map((pokemon) => (
           <label key={ pokemon.name } htmlFor={ pokemon.name }>
             <div className="pokeCard">
-              <input
-                className="input-radio pokeCard pokemons"
-                id={ pokemon.name }
-                onClick={ selectCurrPokemon }
-                name="selected"
-                type="radio"
-                value={ pokemon.name }
-              />
-              <h3>{`Click here to select ${pokemon.name}...`}</h3>
-              <img src={ pokemon.sprites.front_default } alt={ pokemon.name } />
+              <div id="card-text">
+                <input
+                  className="input-radio pokeCard pokemons"
+                  id={ pokemon.name }
+                  onClick={ selectCurrPokemon }
+                  name="selected"
+                  type="radio"
+                  value={ pokemon.name }
+                />
+                <h3>{`Click here to select ${pokemon.name}`}</h3>
+              </div>
+              <div id="card-image">
+                <img
+                  src={ pokemon.sprites.front_default }
+                  alt={ pokemon.name }
+                />
+              </div>
             </div>
           </label>
         )) }

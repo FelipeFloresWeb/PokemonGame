@@ -14,7 +14,6 @@ const INITIAL_STATE = {
 function pokeReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
   case GET_POKEMONS_SUCESS:
-    console.log(action.payload);
     return { ...state, isLoading: false, allPokemonsArr: action.payload };
   case GET_POKEMONS_ERROR:
     return { ...state, error: action.payload };

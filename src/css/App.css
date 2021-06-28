@@ -1,6 +1,8 @@
 * {
   margin : 0;
   padding: 0;
+  font-family: 'Cinzel', serif;
+  box-sizing: border-box;
 }
 
 .App {
@@ -17,12 +19,15 @@
 
 .pokeCard {
   display: flex;
+  flex-wrap: wrap;
   border: solid 1px black;
-  border-bottom: solid 5px black;;
+  justify-content: space-around;
   border-radius: 10px;
-  max-width: 200px;
+  width: 200px;
+  height: 200px;
   padding: 10px;
   background-color: rgb(146, 223, 46);
+  margin: 3px;
 }
 
 .pokeCard:hover {
@@ -32,30 +37,28 @@
 
 .pokeCard:active {
   cursor: pointer;
-  margin-top: 4px;
+  transform: scale(1.1);
   border-bottom: solid 1px black;
 }
 
-.pokeButton {
+#card-image {
+  height: 50%;
+  width: 50%;
+}
+
+#card-text {
   display: flex;
-  padding: 10px;
-  border-radius: 10px;
-  border-bottom: solid 5px black;
-  background-color: rgb(153, 100, 35);
+  /* height: 50%; */
+  width: 60%;
 }
 
-.pokeButton:hover {
-  cursor: pointer;
-}
-
-.pokeButton:active {
-  margin-top: 4px;
-  border-bottom: solid 1px black;
+#card-img {
+  width: 200px;
 }
 
 .pokemon-cards {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   margin: 10px;
 }
@@ -69,19 +72,25 @@
   display: none;
 }
 
-.page-button {
+.pokeButton {
   border-bottom: solid 5px black;
   background-color: rgb(210, 111, 30);
   padding: 10px;
-  transition: 0.2s;
+  /* transition: 0.2s; */
   margin: 20px;
   font-size: 15px;
   font-style: italic;
   font-weight: 700;
 }
 
-.page-button:hover {
+.pokeButton:hover {
+  cursor: pointer;
   background-color: rgb(165, 144, 25);
+}
+
+.pokeButton:active {
+  margin-top: 5px;
+  border-bottom: solid 2px black;
 }
 
 .App-logo {

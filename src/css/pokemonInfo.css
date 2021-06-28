@@ -1,0 +1,30 @@
+.pokemon-card {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  border-radius: 15px;
+  justify-content: center;
+  padding: 1vw 0;
+  background-color: rgb(75, 106, 190);
+  line-height: 30px;
+  width: 80%;
+}
+
+#selectedPokemon {
+  width: 200px;
+  height: 200px;
+}
+
+.card-selected {
+  padding: 15px;
+  display: flex;
+  flex-flow: nowrap column;
+  justify-content: center;
+}
+
+.card-selected-text {
+  padding: 2vw 2vw;
+  font-size: 20px;
+  font-weight: 600;
+  min-width: 55%;
+}

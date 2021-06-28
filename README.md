@@ -1,4 +1,4 @@
-# Created by me, with a little help from Gustavo Sousa and Mauricio Viegas
+# Created by me, with a little help from Gustavo Sousa and Mauricio Viegas and Sérgio Murilo Gonçalves
 
 ## Under Construction....
 
