@@ -8,6 +8,7 @@ const INITIAL_STATE = {
   error: null,
   isLoading: true,
   allPokemonsArr: [],
+  isSelected: false,
   selectedPokemon: {},
 };
 
@@ -18,7 +19,7 @@ function pokeReducer(state = INITIAL_STATE, action) {
   case GET_POKEMONS_ERROR:
     return { ...state, error: action.payload };
   case SELECT_POKEMON:
-    return { ...state, selectedPokemon: action.payload };
+    return { ...state, isSelected: true, selectedPokemon: action.payload };
   default:
     return state;
   }

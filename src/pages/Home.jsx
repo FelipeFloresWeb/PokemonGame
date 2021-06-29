@@ -1,26 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { Redirect /* useHistory */ } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getPokemonsError,
   getPokemonsSucess, selectPokemon } from '../actions/pokeActions';
 import PokemonInfo from '../components/PokemonInfo';
 import getAllPokemons from '../services/pokemonApi';
 import Loading from '../components/Loading';
+import { getItemFromLocalStorage } from '../store/storage';
 
-const POKEMONS_LENGTH = 20;
+const POKEMONS_LENGTH = 10;
 
 function Home(props) {
   const { apiError, getPokemons, allPokemonsArr,
-    error, select, isLoading, selectedPokemon } = props;
+    error, select, isLoading, selectedPokemon, isSelected } = props;
 
-  const [pokemonsOffset, setPokemonsOfSet] = (useState(0));
-  const [pokemonsInScreen, setPokemonsInScreen] = (useState(POKEMONS_LENGTH));
+  const [pokemonsOffset, setPokemonsOfSet] = useState(0);
+  const [pokemonsInScreen, setPokemonsInScreen] = useState(POKEMONS_LENGTH);
+  const [redirect, setRedirect] = useState(false);
 
   const POKEMONS_ARR_LENGTH = allPokemonsArr.length;
   const LIMIT_POKEMONS_SCREEN = pokemonsInScreen === POKEMONS_ARR_LENGTH;
+  // const IS_SELECTEED = selectedPokemon.name;
 
+  const pokemons = [];
   const showingPokemons = () => {
-    const pokemons = [];
     for (let index = pokemonsOffset; index < pokemonsInScreen; index += 1) {
       pokemons.push(allPokemonsArr[index]);
     }
@@ -38,11 +42,18 @@ function Home(props) {
       }
     };
     load();
+    // if (localStorage.myPokemon) {
+    //   const savedPokemon = getItemFromLocalStorage('myPokemon');
+    //   select(savedPokemon)
+    // }
   }, []);
 
   function selectCurrPokemon(event) {
+    // const nextpageButton = document.getElementById('next-page');
+    // nextpageButton.classList.remove('display-off');
     const { id } = event.target;
-    const pokemonFound = allPokemonsArr.find((pokemon) => pokemon.name === id);
+    const pokemonFound = pokemons.find((pokemon) => pokemon.name === id);
+    if (selectedPokemon.name === id) return;
     if (pokemonFound) select(pokemonFound);
   }
 
@@ -56,28 +67,38 @@ function Home(props) {
     setPokemonsInScreen(pokemonsInScreen - POKEMONS_LENGTH);
   };
 
-  const nexPage = () => {
-    ;
+  const nextPage = () => {
+    setRedirect(true);
+  };
+
+  const recoverPokemon = () => {
+    const savedPokemon = getItemFromLocalStorage('myPokemon');
+    select(savedPokemon);
   };
 
   if (error) return <h2>{ error }</h2>;
   if (isLoading) return <h2><Loading /></h2>;
+  if (redirect) return <Redirect to="/PokemonGame/BattlePreparation" />;
+
   return (
-    <div>
+    <div id="main">
       <h2>Welcome to Pokemon game!</h2>
       <h3>
         Here you will find a lot of information about each pokemon.
         We have a list of 500 pokemons.
       </h3>
       <h2>To start select a pokemon...</h2>
+      {localStorage.myPokemon && !isSelected
+        ? (
+          <div id="recover-pokemon">
+            <h2>Do you already have a pokemon that is in training want to keep it?</h2>
+            <button type="button" onClick={ recoverPokemon }>Yes I want!</button>
+          </div>
+        )
+        : '' }
       <div className="card">
         <PokemonInfo pokemon={ selectedPokemon } />
       </div>
-      <button type="button" onClick={ nexPage }>
-        <Link to="/battlePreparation">
-          Next!
-        </Link>
-      </button>
       <button
         type="button"
         disabled={ pokemonsOffset === 0 }
@@ -93,6 +114,15 @@ function Home(props) {
         onClick={ nextPokemons }
       >
         See next pokemons...
+      </button>
+      <button
+        id="next-page"
+        display={ 'none' && !isSelected }
+        // className="display-off"
+        onClick={ nextPage }
+        type="button"
+      >
+        Prepare for battle...
       </button>
       <div className="pokemon-cards">
         { showingPokemons().map((pokemon) => (
@@ -130,10 +160,11 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = ({ pokeReducer:
-  { isLoading, selectedPokemon, allPokemonsArr } }) => ({
+  { isLoading, selectedPokemon, allPokemonsArr, isSelected } }) => ({
   isLoading,
   selectedPokemon,
   allPokemonsArr,
+  isSelected,
 });
 
 Home.propTypes = {

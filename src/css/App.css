@@ -11,6 +11,12 @@
   background-color: yellow;
 }
 
+.pokemon-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .card {
   display: flex;
   justify-content: center;
@@ -19,48 +25,45 @@
 
 .pokeCard {
   display: flex;
-  flex-wrap: wrap;
   border: solid 1px black;
-  justify-content: space-around;
+  justify-content: center;
   border-radius: 10px;
-  width: 200px;
-  height: 200px;
-  padding: 10px;
+  max-width: 200px;
+  /* set off to button effect */
+  height: 110px;
+  padding: 5px;
   background-color: rgb(146, 223, 46);
-  margin: 3px;
+  margin: 5px;
+  /* border-bottom: solid 5px black; */
+  /* transition: 0.1s; */
 }
 
 .pokeCard:hover {
   cursor: pointer;
   background-color: rgb(52, 134, 19);
+  
 }
 
 .pokeCard:active {
   cursor: pointer;
-  transform: scale(1.1);
-  border-bottom: solid 1px black;
+  /* margin-top: 9px;
+  border-bottom: solid 1px black; */
+  transform: scale(1.05);
 }
 
 #card-image {
-  height: 50%;
-  width: 50%;
+  width: 46%;
 }
 
 #card-text {
   display: flex;
-  /* height: 50%; */
-  width: 60%;
+  font-size: 13px;
+  width: 65%;
+  height: 100%;
 }
 
 #card-img {
   width: 200px;
-}
-
-.pokemon-cards {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin: 10px;
 }
 
 .pokemons {
@@ -73,14 +76,14 @@
 }
 
 .pokeButton {
-  border-bottom: solid 5px black;
+  /* border-bottom: solid 5px black; */
   background-color: rgb(210, 111, 30);
   padding: 10px;
-  /* transition: 0.2s; */
   margin: 20px;
   font-size: 15px;
   font-style: italic;
   font-weight: 700;
+  transition: 0.1s;
 }
 
 .pokeButton:hover {
@@ -90,7 +93,41 @@
 
 .pokeButton:active {
   margin-top: 5px;
-  border-bottom: solid 2px black;
+  transform: scale(1.05);
+  /* border-bottom: solid 2px black; */
+}
+
+.display-off {
+  display: none;
+}
+
+#next-page {
+  padding: 15px;
+  border-radius: 15px;
+  border: none;
+  transition: 1s;
+  animation: nextpage infinite 1s;
+  background-color: green;
+}
+
+#next-page:hover {
+  cursor: pointer;
+}
+
+@keyframes nextpage {
+  50% {
+    transform: scale(1.1);
+    background-color: blue;
+  }
+  100% {
+    transform: scale(1);
+    background-color: green;
+  }
+}
+
+#save-to-store {
+  color: green;
+  font-weight: 600;
 }
 
 .App-logo {
