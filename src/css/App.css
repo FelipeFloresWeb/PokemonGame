@@ -1,12 +1,20 @@
 * {
   margin : 0;
   padding: 0;
+  font-family: 'Cinzel', serif;
+  box-sizing: border-box;
 }
 
 .App {
   text-align: center;
   padding: 0 2%;
   background-color: yellow;
+}
+
+.pokemon-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .card {
@@ -18,47 +26,44 @@
 .pokeCard {
   display: flex;
   border: solid 1px black;
-  border-bottom: solid 5px black;;
+  justify-content: center;
   border-radius: 10px;
   max-width: 200px;
-  padding: 10px;
+  /* set off to button effect */
+  height: 110px;
+  padding: 5px;
   background-color: rgb(146, 223, 46);
-  transition: 0.4s;
+  margin: 5px;
+  /* border-bottom: solid 5px black; */
+  /* transition: 0.1s; */
 }
 
 .pokeCard:hover {
   cursor: pointer;
   background-color: rgb(52, 134, 19);
+  
 }
 
 .pokeCard:active {
   cursor: pointer;
-  margin-top: 4px;
-  border-bottom: solid 1px black;
+  /* margin-top: 9px;
+  border-bottom: solid 1px black; */
+  transform: scale(1.05);
 }
 
-.pokeButton {
+#card-image {
+  width: 46%;
+}
+
+#card-text {
   display: flex;
-  padding: 10px;
-  border-radius: 10px;
-  border-bottom: solid 5px black;
-  background-color: rgb(153, 100, 35);
+  font-size: 13px;
+  width: 65%;
+  height: 100%;
 }
 
-.pokeButton:hover {
-  cursor: pointer;
-}
-
-.pokeButton:active {
-  margin-top: 4px;
-  border-bottom: solid 1px black;
-}
-
-.pokemon-cards {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin: 10px;
+#card-img {
+  width: 200px;
 }
 
 .pokemons {
@@ -70,19 +75,59 @@
   display: none;
 }
 
-.page-button {
-  border-bottom: solid 5px black;
+.pokeButton {
+  /* border-bottom: solid 5px black; */
   background-color: rgb(210, 111, 30);
   padding: 10px;
-  transition: 0.2s;
   margin: 20px;
   font-size: 15px;
   font-style: italic;
   font-weight: 700;
+  transition: 0.1s;
 }
 
-.page-button:hover {
+.pokeButton:hover {
+  cursor: pointer;
   background-color: rgb(165, 144, 25);
+}
+
+.pokeButton:active {
+  margin-top: 5px;
+  transform: scale(1.05);
+  /* border-bottom: solid 2px black; */
+}
+
+.display-off {
+  display: none;
+}
+
+#next-page {
+  padding: 15px;
+  border-radius: 15px;
+  border: none;
+  transition: 1s;
+  animation: nextpage infinite 1s;
+  background-color: green;
+}
+
+#next-page:hover {
+  cursor: pointer;
+}
+
+@keyframes nextpage {
+  50% {
+    transform: scale(1.1);
+    background-color: blue;
+  }
+  100% {
+    transform: scale(1);
+    background-color: green;
+  }
+}
+
+#save-to-store {
+  color: green;
+  font-weight: 600;
 }
 
 .App-logo {
