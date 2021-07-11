@@ -42,10 +42,10 @@ function Home(props) {
       }
     };
     load();
-    // if (localStorage.myPokemon) {
-    //   const savedPokemon = getItemFromLocalStorage('myPokemon');
-    //   select(savedPokemon)
-    // }
+    if (localStorage.myPokemon) {
+      const savedPokemon = getItemFromLocalStorage('myPokemon');
+      select(savedPokemon);
+    }
   }, []);
 
   function selectCurrPokemon(event) {
@@ -117,8 +117,8 @@ function Home(props) {
       </button>
       <button
         id="next-page"
-        display={ 'none' && !isSelected }
-        // className="display-off"
+        display={ 'none' && isSelected }
+        className={ !isSelected ? 'display-off' : '' }
         onClick={ nextPage }
         type="button"
       >

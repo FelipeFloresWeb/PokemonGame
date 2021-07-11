@@ -7,7 +7,6 @@ import { setToLocalStorage } from '../store/storage';
 function BattlePreparation() {
   // const pokemonSelected = useSelector((pokemonSelected) => pokemonSelected.pokemonSelected);
   const pokemonSelected = useSelector((state) => state.pokeReducer.selectedPokemon);
-  console.log(pokemonSelected);
   return (
     <>
       <Link to="/PokemonGame">Voltar</Link>
