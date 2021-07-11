@@ -19,6 +19,7 @@ class App extends Component {
           </Switch>
         </BrowserRouter>
         <h2>Created By Felipe Flores</h2>
+        <a href="https://github.com/FelipeFloresWeb/">GitHub</a>
         <p>Datas from: https://pokeapi.co/</p>
       </div>
     );
