@@ -8,8 +8,9 @@ import PokemonInfo from '../components/PokemonInfo';
 import getAllPokemons from '../services/pokemonApi';
 import Loading from '../components/Loading';
 import { getItemFromLocalStorage } from '../store/storage';
+import FilterInput from '../components/FilterInput';
 
-const POKEMONS_LENGTH = 10;
+const POKEMONS_LENGTH = 1;
 
 function Home(props) {
   const { apiError, getPokemons, allPokemonsArr,
@@ -99,6 +100,7 @@ function Home(props) {
       <div className="card">
         <PokemonInfo pokemon={ selectedPokemon } />
       </div>
+      <FilterInput />
       <button
         type="button"
         disabled={ pokemonsOffset === 0 }
