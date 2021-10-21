@@ -1,9 +1,15 @@
+/* eslint-disable react/jsx-closing-tag-location */
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { connect, useSelector } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import { setOponent } from '../actions/pokeActions';
 import PokemonInfo from '../components/PokemonInfo';
 import { setToLocalStorage } from '../store/storage';
+
+const DISPLAY = 'display-off';
+const POKEMON_LEVEL_3 = 3;
+const MAX_LEVEL_OPONENT = 99;
 
 function BattlePreparation(props) {
   const { setOpnt } = props;
@@ -48,7 +54,7 @@ function BattlePreparation(props) {
         <PokemonInfo pokemon={ pokemonSelected } />
       </div>
       <h2>want to keep this pokemon and store your information?</h2>
-      <h3 id="save-to-store" className="display-off">
+      <h3 id="save-to-store" className="DISPLAY">
         Congratulations now this pokemon is yours, take good care of it.
       </h3>
       <button
@@ -58,9 +64,9 @@ function BattlePreparation(props) {
           const THREE_SECONDS = 3000;
           const informationSave = document.getElementById('save-to-store');
           setToLocalStorage('myPokemon', pokemonSelected);
-          informationSave.classList.remove('display-off');
+          informationSave.classList.remove(DISPLAY);
           setTimeout(() => {
-            informationSave.classList.add('display-off');
+            informationSave.classList.add(DISPLAY);
           }, THREE_SECONDS);
         } }
       >
@@ -103,7 +109,7 @@ function BattlePreparation(props) {
       </div>
       <button
         id="level 1"
-        className={ !takedPokemon ? 'display-off' : '' }
+        className={ !takedPokemon ? DISPLAY : '' }
         onClick={ () => getRandomPokemon(1) }
         type="button"
       >
@@ -111,7 +117,7 @@ function BattlePreparation(props) {
       </button>
       <button
         id="level 2"
-        className={ !takedPokemon ? 'display-off' : '' }
+        className={ !takedPokemon ? DISPLAY : '' }
         onClick={ () => getRandomPokemon(2) }
         type="button"
       >
@@ -119,27 +125,27 @@ function BattlePreparation(props) {
       </button>
       <button
         id="level 3"
-        className={ !takedPokemon ? 'display-off' : '' }
-        onClick={ () => getRandomPokemon(3) }
+        className={ !takedPokemon ? DISPLAY : '' }
+        onClick={ () => getRandomPokemon(POKEMON_LEVEL_3) }
         type="button"
       >
         Level 3
       </button>
       <button
         id="checkOponent"
-        className={ !takedPokemon ? 'display-off' : '' }
+        className={ !takedPokemon ? DISPLAY : '' }
         onClick={ () => setShowOponent(!showOponent) }
         type="button"
       >
         CheckOponent
       </button>
       <h4
-        className={ !takedPokemon ? 'display-off' : '' }
+        className={ !takedPokemon ? DISPLAY : '' }
       >
         Set Oponent Level here (Max 99 if you can XD)
       </h4>
       <label
-        className={ !takedPokemon ? 'display-off' : '' }
+        className={ !takedPokemon ? DISPLAY : '' }
         htmlFor="oponentLvl"
       >
         <input
@@ -152,10 +158,10 @@ function BattlePreparation(props) {
       </label>
       <button
         id="oponentLevelButton"
-        className={ !takedPokemon ? 'display-off' : '' }
+        className={ !takedPokemon ? DISPLAY : '' }
         onClick={ () => {
           let levelOponent = document.getElementById('oponentLvl').value;
-          if (levelOponent > 99) levelOponent = 99;
+          if (levelOponent > MAX_LEVEL_OPONENT) levelOponent = MAX_LEVEL_OPONENT;
           getRandomPokemon(levelOponent);
         } }
         type="button"
@@ -169,5 +175,9 @@ function BattlePreparation(props) {
 const mapDispatchToProps = (dispatch) => ({
   setOpnt: (payload, payload2) => dispatch(setOponent(payload, payload2)),
 });
+
+BattlePreparation.propTypes = {
+  setOpnt: PropTypes.object,
+}.isRequired;
 
 export default connect(null, mapDispatchToProps)(BattlePreparation);

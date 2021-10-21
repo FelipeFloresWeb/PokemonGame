@@ -1,10 +1,14 @@
+/* eslint-disable react/jsx-closing-tag-location */
 import React, { useState, useEffect } from 'react';
 
 import { connect, useSelector } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PokemonInfo from '../components/PokemonInfo';
 import PokemonInfoBattle from '../components/PokemonInfoBattle';
-import { setToLocalStorage } from '../store/storage';
+// import { setToLocalStorage } from '../store/storage';
+
+const MIN_DMG_PERCENT = 0.1;
+const MAX_DMG_PERCENT = 0.3;
 
 function BattleCamp() {
   const oponent = useSelector((state) => state.pokeReducer.oponent.stats);
@@ -12,9 +16,9 @@ function BattleCamp() {
   const pokemonSelected = useSelector((state) => state.pokeReducer.selectedPokemon);
 
   const [thisOponent, setOponentStats] = useState(oponent);
-  const [attacks, setAttacks] = useState(0);
+  // const [attacks, setAttacks] = useState(0);
   const [redirect, setRedirect] = useState(false);
-  const [me, setMe] = useState(pokemonSelected);
+  // const [me, setMe] = useState(pokemonSelected);
   // setOponentStats(oponent);
 
   useEffect(() => {
@@ -25,8 +29,8 @@ function BattleCamp() {
   }, []);
 
   function attack() {
-    const minAttack = pokemonSelected.stats[1].base_stat * 0.1;
-    const maxAttack = pokemonSelected.stats[1].base_stat * 0.3;
+    const minAttack = pokemonSelected.stats[1].base_stat * MIN_DMG_PERCENT;
+    const maxAttack = pokemonSelected.stats[1].base_stat * MAX_DMG_PERCENT;
     const myAttack = Math.ceil(Math.random() * -(minAttack - maxAttack));
 
     setOponentStats({ ...thisOponent,
@@ -50,8 +54,7 @@ function BattleCamp() {
         : ''}
       {!redirect
         ? <PokemonInfoBattle pokemon={ thisOponent } level={ level } />
-        :
-        <div>
+        : <div>
           <Link
             style={ {
               fontSize: '26px',
