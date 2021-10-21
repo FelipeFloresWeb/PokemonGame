@@ -54,7 +54,7 @@ function Home(props) {
     // nextpageButton.classList.remove('display-off');
     const { id } = event.target;
     const pokemonFound = pokemons.find((pokemon) => pokemon.name === id);
-    console.log(pokemonFound);
+
     if (selectedPokemon.name === id) return;
     if (pokemonFound) select(pokemonFound);
   }
