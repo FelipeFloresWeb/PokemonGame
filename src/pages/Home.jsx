@@ -8,6 +8,7 @@ import PokemonInfo from '../components/PokemonInfo';
 import getAllPokemons from '../services/pokemonApi';
 import Loading from '../components/Loading';
 import { getItemFromLocalStorage } from '../store/storage';
+// import FilterInput from '../components/FilterInput';
 
 const POKEMONS_LENGTH = 10;
 
@@ -22,7 +23,7 @@ function Home(props) {
   const POKEMONS_ARR_LENGTH = allPokemonsArr.length;
   const LIMIT_POKEMONS_SCREEN = pokemonsInScreen === POKEMONS_ARR_LENGTH;
   // const IS_SELECTEED = selectedPokemon.name;
-
+  console.log(isSelected);
   const pokemons = [];
   const showingPokemons = () => {
     for (let index = pokemonsOffset; index < pokemonsInScreen; index += 1) {
@@ -42,10 +43,10 @@ function Home(props) {
       }
     };
     load();
-    if (localStorage.myPokemon) {
+    /* if (localStorage.myPokemon) {
       const savedPokemon = getItemFromLocalStorage('myPokemon');
       select(savedPokemon);
-    }
+    } */
   }, []);
 
   function selectCurrPokemon(event) {
@@ -99,6 +100,7 @@ function Home(props) {
       <div className="card">
         <PokemonInfo pokemon={ selectedPokemon } />
       </div>
+      {/* <FilterInput /> error component */}
       <button
         type="button"
         disabled={ pokemonsOffset === 0 }
@@ -117,7 +119,6 @@ function Home(props) {
       </button>
       <button
         id="next-page"
-        display={ 'none' && isSelected }
         className={ !isSelected ? 'display-off' : '' }
         onClick={ nextPage }
         type="button"

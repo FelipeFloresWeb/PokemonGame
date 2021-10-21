@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './css/App.css';
 import Home from './pages/Home';
 import BattlePreparation from './pages/BattlePreparation';
+import BattleCamp from './pages/BattleCamp';
 
 class App extends Component {
   render() {
@@ -16,9 +17,15 @@ class App extends Component {
               path="/PokemonGame/BattlePreparation"
               component={ BattlePreparation }
             />
+            <Route
+              exact
+              path="/PokemonGame/BattleCamp"
+              component={ BattleCamp }
+            />
           </Switch>
         </BrowserRouter>
-        <h2>Created By Felipe Flores</h2>
+        <h2 style={ { marginTop: '5%' } }>Created By Felipe Flores</h2>
+        <a href="https://github.com/FelipeFloresWeb/">GitHub</a>
         <p>Datas from: https://pokeapi.co/</p>
       </div>
     );
