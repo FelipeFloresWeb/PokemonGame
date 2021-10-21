@@ -8,8 +8,6 @@
 
 ## How to install?
 
-## Instalação do projeto localmente
-
 1. Open terminal and crate a new folder **mkdir**:
 ```javascript
 
