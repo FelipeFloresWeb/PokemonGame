@@ -46,7 +46,7 @@ function BattleCamp() {
   }, [thisOponent]);
 
   return (
-    <div>
+    <div style={ { display: 'flex', flexDirection: 'column', alignItems: 'center' } }>
       <Link to="/PokemonGame/BattlePreparation">Back To BattlePreparation</Link>
       <PokemonInfo pokemon={ pokemonSelected } />
       {!redirect
@@ -65,7 +65,7 @@ function BattleCamp() {
             to="/PokemonGame/BattlePreparation"
           >
             Congratulations you Win!
-            Click here to Back --BattlePreparation--
+            Click here to Back BattlePreparation
           </Link>
         </div>}
     </div>

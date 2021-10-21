@@ -49,7 +49,7 @@ function BattlePreparation(props) {
       <div>
         <h1>Battle Preparation</h1>
       </div>
-      <div>
+      <div style={ { display: 'flex', flexDirection: 'column', alignItems: 'center' } }>
         <h1>You selected:</h1>
         <PokemonInfo pokemon={ pokemonSelected } />
       </div>
