@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { filterPokemons } from '../actions/pokeActions';
 
 function getCurrPokemon(currpokemon, filter, allPokemonsArr) {
   const filterCurrPokemons = allPokemonsArr
     .filter((item) => item.name.includes((currpokemon)));
-  console.log(currpokemon);
-  console.log(filterCurrPokemons);
   filter(filterCurrPokemons);
+
+  /* const filterCurrPokemons = allPokemonsArr
+    .map((item) => item.name.includes(currpokemon));
+  filter(filterCurrPokemons); */
 }
 
 function FilterInput(props) {
@@ -31,5 +34,9 @@ const mapStateToProps = ({ pokeReducer: { allPokemonsArr } }) => ({
 const mapDispatchToProps = (dispatch) => ({
   filter: (payload) => dispatch(filterPokemons(payload)),
 });
+
+FilterInput.propTypes = {
+  filter: PropTypes.func,
+}.isRequired;
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterInput);
