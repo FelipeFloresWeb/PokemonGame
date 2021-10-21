@@ -86,7 +86,7 @@ function Home(props) {
     case 'fire':
       return 'red';
     case 'normal':
-      return 'white';
+      return 'rgb(195, 192, 63)';
     case 'bug':
       return 'green';
     case 'electric':
