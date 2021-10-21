@@ -54,7 +54,7 @@ function BattlePreparation(props) {
         <PokemonInfo pokemon={ pokemonSelected } />
       </div>
       <h2>want to keep this pokemon and store your information?</h2>
-      <h3 id="save-to-store" className="DISPLAY">
+      <h3 id="save-to-store" className="display-off">
         Congratulations now this pokemon is yours, take good care of it.
       </h3>
       <button

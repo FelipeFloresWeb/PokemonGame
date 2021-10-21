@@ -23,7 +23,7 @@ function Home(props) {
   const POKEMONS_ARR_LENGTH = allPokemonsArr.length;
   const LIMIT_POKEMONS_SCREEN = pokemonsInScreen === POKEMONS_ARR_LENGTH;
   // const IS_SELECTEED = selectedPokemon.name;
-  console.log(isSelected);
+
   const pokemons = [];
   const showingPokemons = () => {
     for (let index = pokemonsOffset; index < pokemonsInScreen; index += 1) {
@@ -54,6 +54,7 @@ function Home(props) {
     // nextpageButton.classList.remove('display-off');
     const { id } = event.target;
     const pokemonFound = pokemons.find((pokemon) => pokemon.name === id);
+    console.log(pokemonFound);
     if (selectedPokemon.name === id) return;
     if (pokemonFound) select(pokemonFound);
   }
@@ -75,6 +76,40 @@ function Home(props) {
   const recoverPokemon = () => {
     const savedPokemon = getItemFromLocalStorage('myPokemon');
     select(savedPokemon);
+  };
+
+  const getPokemonType = (pokemon) => {
+    const type = pokemon.types[0].type.name;
+    switch (type) {
+    case 'water':
+      return 'rgb(26, 218, 147)';
+    case 'fire':
+      return 'red';
+    case 'normal':
+      return 'rgb(195, 192, 63)';
+    case 'bug':
+      return 'green';
+    case 'electric':
+      return 'rgb(255, 158, 0)';
+    case 'ground':
+      return 'rgb(115, 81, 53)';
+    case 'poison':
+      return 'rgb(34, 210, 13)';
+    case 'grass':
+      return 'rgb(146, 223, 46)';
+    case 'fighting':
+      return 'rgb(155, 166, 162)';
+    case 'psychic':
+      return 'rgb(105, 29, 144)';
+    case 'rock':
+      return 'rgb(94, 93, 92)';
+    case 'dark':
+      return 'rgb(72, 24, 72)';
+    case 'fairy':
+      return 'rgb(236, 61, 166)';
+    default:
+      break;
+    }
   };
 
   if (error) return <h2>{ error }</h2>;
@@ -128,8 +163,12 @@ function Home(props) {
       <div className="pokemon-cards">
         { showingPokemons().map((pokemon) => (
           <label key={ pokemon.name } htmlFor={ pokemon.name }>
-            <div className="pokeCard">
+            <div
+              style={ { backgroundColor: getPokemonType(pokemon) } }
+              className="pokeCard"
+            >
               <div id="card-text">
+                { }
                 <input
                   className="input-radio pokeCard pokemons"
                   id={ pokemon.name }

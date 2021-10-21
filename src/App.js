@@ -25,7 +25,7 @@ class App extends Component {
           </Switch>
         </BrowserRouter>
         <h2 style={ { marginTop: '5%' } }>Created By Felipe Flores</h2>
-        <a href="https://github.com/FelipeFloresWeb/">GitHub</a>
+        <a href="https://github.com/FelipeFloresWeb/PokemonGame">GitHub</a>
         <p>Datas from: https://pokeapi.co/</p>
       </div>
     );
