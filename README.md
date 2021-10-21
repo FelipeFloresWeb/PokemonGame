@@ -4,6 +4,7 @@
 ### React,
 ### Redux,
 ### JavaScript;
+### React Hooks;
 
 
 ## How to install?
