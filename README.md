@@ -1,10 +1,14 @@
-## Under Construction....
+## Under construction...
+## Thank you very much for accessing this repository!
+### I created this project using the following technologies:
+- JavaScript;
+- React;
+- React Hooks;
+- Redux;
+As I have always enjoyed exploring programming I decided to create this personal project to explore my creativity and also my knowledge of these technologies...
 
-### I created this repository to store information about the development of this game about pokemons. It is being used in this application:
-### React,
-### Redux,
-### JavaScript;
-### React Hooks;
+### My biggest difficulty was in applying and understanding Redux,
+### At the same time I never get tired of incrementing this project more and more...
 
 
 ## How to install?
