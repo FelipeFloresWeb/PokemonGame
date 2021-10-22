@@ -1,5 +1,5 @@
-## Under construction...
-## Thank you very much for accessing this repository!
+## 	:hourglass_flowing_sand: Under construction :hourglass_flowing_sand:
+## Thank you very much for accessing this repository!:grinning:
 ## As I have always enjoyed exploring programming I decided to create this personal project to explore my creativity and also my knowledge about the following technologies:
 - JavaScript;
 - React;
