@@ -7,7 +7,7 @@ function PokemonInfoBattle(props) {
   if (!pokemon.name) {
     return (
       <div>
-        Select an Pokemon to see more information about it...
+        Selecione um pokemon para ver mais informações sobre ele...
       </div>);
   }
   return (

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect, useSelector } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
-import { setOponent } from '../actions/pokeActions';
+import { setOponent, battleOk } from '../actions/pokeActions';
 import PokemonInfo from '../components/PokemonInfo';
 import { setToLocalStorage } from '../store/storage';
 
@@ -12,28 +12,27 @@ const POKEMON_LEVEL_3 = 3;
 const MAX_LEVEL_OPONENT = 99;
 
 function BattlePreparation(props) {
-  const { setOpnt } = props;
+  const { setOpnt, setToBattle, okToBattle } = props;
   // const pokemonSelected = useSelector((pokemonSelected) => pokemonSelected.pokemonSelected);
   const pokemonSelected = useSelector((state) => state.pokeReducer.selectedPokemon);
   const allPokemons = useSelector((state) => state.pokeReducer.allPokemonsArr);
-  const [takedPokemon, setTakedPodemon] = useState(false);
-  const [battleOk, setBattleOk] = useState(false);
   const [oponent, setOponentHere] = useState({});
   const [oponentLvl, setOponentLvl] = useState();
   const [showOponent, setShowOponent] = useState(false);
   const [redirect, setRedirect] = useState(false);
+  const [oponentStats, setOponentStats] = useState(false);
 
   function getRandomPokemon(lvl) {
     setOponentLvl(lvl);
     document.getElementById('BPText')
-      .innerHTML = 'This is your oponent. Are you ready for the battle?';
+      .innerHTML = 'Este é seu Oponente está Pronto para a batalha?';
     // document.getElementById('level 1').classList.add('display-off');
     // document.getElementById('level 2').classList.add('display-off');
     // document.getElementById('level 3').classList.add('display-off');
     const currPokemonBattle = allPokemons[Math.ceil(Math.random() * allPokemons.length)];
     const oponentOk = currPokemonBattle;
     setOponentHere(oponentOk);
-    setBattleOk(true);
+    setShowOponent(true);
   }
 
   function battle(opnt) {
@@ -47,20 +46,20 @@ function BattlePreparation(props) {
     <>
       <Link to="/PokemonGame">Voltar</Link>
       <div>
-        <h1>Battle Preparation</h1>
+        <h1>Preparação para a batalha</h1>
       </div>
       <div style={ { display: 'flex', flexDirection: 'column', alignItems: 'center' } }>
-        <h1>You selected:</h1>
+        <h1>Voce Selecionou:</h1>
         <PokemonInfo pokemon={ pokemonSelected } />
       </div>
-      <h2>want to keep this pokemon and store your information?</h2>
+      <h2>Gostaria de selecionar este pokemon para voce e armazenar todos seus dados?</h2>
       <h3 id="save-to-store" className="display-off">
-        Congratulations now this pokemon is yours, take good care of it.
+        Parabéns este pokemon agora é seu, trate-o com carinho :)
       </h3>
       <button
         type="button"
         onClick={ () => {
-          setTakedPodemon(true);
+          // setTakedPodemon(true);
           const THREE_SECONDS = 3000;
           const informationSave = document.getElementById('save-to-store');
           setToLocalStorage('myPokemon', pokemonSelected);
@@ -68,13 +67,19 @@ function BattlePreparation(props) {
           setTimeout(() => {
             informationSave.classList.add(DISPLAY);
           }, THREE_SECONDS);
+          setToBattle(true);
         } }
       >
-        Yes I want!
+        Sim eu quero!
       </button>
-      <h1 id="BPText">Want to battle pokemons of which levels?</h1>
+      <h1
+        className={ !okToBattle ? DISPLAY : '' }
+        id="BPText"
+      >
+        Selecione o nível do seu oponente
+      </h1>
       <div className="pokemon-cards">
-        { battleOk
+        { showOponent
           && <label htmlFor={ oponent.name }>
             <div className="pokeCard" style={ { backgroundColor: '#D2691E' } }>
               <div id="card-text">
@@ -86,7 +91,9 @@ function BattlePreparation(props) {
                   type="radio"
                   value={ oponent.name }
                 />
-                <h3>{`Click here to Battle with ${oponent.name} level ${oponentLvl}`}</h3>
+                <h3>
+                  {`Clique aqui para lutar contra: ${oponent.name} nível ${oponentLvl}`}
+                </h3>
               </div>
               <div id="card-image">
                 <img
@@ -97,7 +104,7 @@ function BattlePreparation(props) {
             </div>
           </label>}
         <div>
-          { showOponent && oponent.stats.map((stat) => (
+          { oponentStats && oponent.stats.map((stat) => (
             <p key={ `${stat.name}${stat.stat.name}` }>
               {`${stat.stat.name}: `}
               <strong>
@@ -109,43 +116,46 @@ function BattlePreparation(props) {
       </div>
       <button
         id="level 1"
-        className={ !takedPokemon ? DISPLAY : '' }
+        className={ !okToBattle ? DISPLAY : '' }
         onClick={ () => getRandomPokemon(1) }
         type="button"
       >
-        Level 1
+        Nível 1
       </button>
       <button
         id="level 2"
-        className={ !takedPokemon ? DISPLAY : '' }
+        className={ !okToBattle ? DISPLAY : '' }
         onClick={ () => getRandomPokemon(2) }
         type="button"
       >
-        Level 2
+        Nível 2
       </button>
       <button
         id="level 3"
-        className={ !takedPokemon ? DISPLAY : '' }
+        className={ !okToBattle ? DISPLAY : '' }
         onClick={ () => getRandomPokemon(POKEMON_LEVEL_3) }
         type="button"
       >
-        Level 3
+        Nível 3
       </button>
       <button
         id="checkOponent"
-        className={ !takedPokemon ? DISPLAY : '' }
-        onClick={ () => setShowOponent(!showOponent) }
+        className={ !okToBattle ? DISPLAY : '' }
+        onClick={ () => {
+          if (!showOponent) return;
+          setOponentStats(!oponentStats);
+        } }
         type="button"
       >
-        CheckOponent
+        Ver status do Oponente
       </button>
       <h4
-        className={ !takedPokemon ? DISPLAY : '' }
+        className={ !okToBattle ? DISPLAY : '' }
       >
-        Set Oponent Level here (Max 99 if you can XD)
+        Coloque o nível que quiser (Máximo 99 se voce conseguir XD)
       </h4>
       <label
-        className={ !takedPokemon ? DISPLAY : '' }
+        className={ !okToBattle ? DISPLAY : '' }
         htmlFor="oponentLvl"
       >
         <input
@@ -158,7 +168,7 @@ function BattlePreparation(props) {
       </label>
       <button
         id="oponentLevelButton"
-        className={ !takedPokemon ? DISPLAY : '' }
+        className={ !okToBattle ? DISPLAY : '' }
         onClick={ () => {
           let levelOponent = document.getElementById('oponentLvl').value;
           if (levelOponent > MAX_LEVEL_OPONENT) levelOponent = MAX_LEVEL_OPONENT;
@@ -166,7 +176,7 @@ function BattlePreparation(props) {
         } }
         type="button"
       >
-        Set Oponent Level
+        Selecionar nível do oponente
       </button>
     </>
   );
@@ -174,10 +184,17 @@ function BattlePreparation(props) {
 
 const mapDispatchToProps = (dispatch) => ({
   setOpnt: (payload, payload2) => dispatch(setOponent(payload, payload2)),
+  setToBattle: (payload) => dispatch(battleOk(payload)),
+});
+
+const mapStateToProps = ({ pokeReducer: { okToBattle } }) => ({
+  okToBattle,
 });
 
 BattlePreparation.propTypes = {
   setOpnt: PropTypes.object,
+  setToBattle: PropTypes.object,
+  okToBattle: PropTypes.bool,
 }.isRequired;
 
-export default connect(null, mapDispatchToProps)(BattlePreparation);
+export default connect(mapStateToProps, mapDispatchToProps)(BattlePreparation);

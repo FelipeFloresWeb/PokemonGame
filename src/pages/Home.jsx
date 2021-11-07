@@ -118,17 +118,17 @@ function Home(props) {
 
   return (
     <div id="main">
-      <h2>Welcome to Pokemon game!</h2>
+      <h2>Bem vindo ao mini jogo de Pokemon!</h2>
       <h3>
-        Here you will find a lot of information about each pokemon.
-        We have a list of 500 pokemons.
+        Aqui voce encontrará uma lista com mais de 500 pokemons,
+        incluindo todas informações a respeito de cada um!
       </h3>
-      <h2>To start select a pokemon...</h2>
+      <h2>Para iniciar selecione um...</h2>
       {localStorage.myPokemon && !isSelected
         ? (
           <div id="recover-pokemon">
-            <h2>Do you already have a pokemon that is in training want to keep it?</h2>
-            <button type="button" onClick={ recoverPokemon }>Yes I want!</button>
+            <h2>Voce já possui um pokemon selecionado. Gostaria de seguir com ele?</h2>
+            <button type="button" onClick={ recoverPokemon }>Sim!</button>
           </div>
         )
         : '' }
@@ -142,7 +142,7 @@ function Home(props) {
         className="pokeButton"
         onClick={ previousPokemons }
       >
-        See previous pokemons...
+        Ver anteriores...
       </button>
       <button
         type="button"
@@ -150,7 +150,7 @@ function Home(props) {
         className="pokeButton"
         onClick={ nextPokemons }
       >
-        See next pokemons...
+        Ver próximos...
       </button>
       <button
         id="next-page"
@@ -158,7 +158,7 @@ function Home(props) {
         onClick={ nextPage }
         type="button"
       >
-        Prepare for battle...
+        Vamos a batalha...
       </button>
       <div className="pokemon-cards">
         { showingPokemons().map((pokemon) => (
