@@ -4,6 +4,7 @@ import {
   SELECT_POKEMON,
   FILTER_POKEMONS,
   SET_OPONENT,
+  BATTLE_OK,
 } from '../actions/pokeActions';
 
 const INITIAL_STATE = {
@@ -11,6 +12,7 @@ const INITIAL_STATE = {
   isLoading: true,
   allPokemonsArr: [],
   isSelected: false,
+  okToBattle: false,
   selectedPokemon: {},
   oponent: {
     stats: {},
@@ -20,6 +22,8 @@ const INITIAL_STATE = {
 
 function pokeReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
+  case BATTLE_OK:
+    return { ...state, okToBattle: action.payload };
   case GET_POKEMONS_SUCESS:
     return { ...state, isLoading: false, allPokemonsArr: action.payload };
   case GET_POKEMONS_ERROR:

@@ -3,6 +3,12 @@ export const GET_POKEMONS_ERROR = 'GET_POKEMONS_ERROR';
 export const SELECT_POKEMON = 'SELECT_POKEMON';
 export const FILTER_POKEMONS = 'FILTER_POKEMONS';
 export const SET_OPONENT = 'SET_OPONENT';
+export const BATTLE_OK = 'BATTLE_OK';
+
+export const battleOk = (payload) => ({
+  type: BATTLE_OK,
+  payload,
+});
 
 export const getPokemonsSucess = (payload) => ({
   type: GET_POKEMONS_SUCESS,

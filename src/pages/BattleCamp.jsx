@@ -47,7 +47,7 @@ function BattleCamp() {
 
   return (
     <div style={ { display: 'flex', flexDirection: 'column', alignItems: 'center' } }>
-      <Link to="/PokemonGame/BattlePreparation">Back To BattlePreparation</Link>
+      <Link to="/PokemonGame/BattlePreparation">Voltar para preparação para Batalha</Link>
       <PokemonInfo pokemon={ pokemonSelected } />
       {!redirect
         ? <button type="button" onClick={ attack }>Attack!</button>
@@ -55,6 +55,7 @@ function BattleCamp() {
       {!redirect
         ? <PokemonInfoBattle pokemon={ thisOponent } level={ level } />
         : <div>
+          <h2>Parabéns voce venceu!</h2>
           <Link
             style={ {
               fontSize: '26px',
@@ -64,8 +65,7 @@ function BattleCamp() {
               fontWeight: '700' } }
             to="/PokemonGame/BattlePreparation"
           >
-            Congratulations you Win!
-            Click here to Back BattlePreparation
+            Clique aqui para voltar a preparação para batalha
           </Link>
         </div>}
     </div>
