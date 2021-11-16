@@ -6,7 +6,7 @@
 - React Hooks;
 - Redux;
 
-### Minha maior dificuldade neste projeto inicialmente foi em aplicar o redux... Mas ao mesmo tempo como fui aprendendo percebi o quão poderoso esta ferramenta é, e por isso nunca me canso de querer melhorar cada vez mais e mais este projeto 😄
+### Minha maior dificuldade neste projeto inicialmente foi em aplicar o redux... Mas ao mesmo tempo, como fui aprendendo, percebi o quão poderoso esta ferramenta é, e por isso nunca me canso de querer melhorar cada vez mais e mais este projeto 😄
 
 
 ## Como instalar este projeto em minha máquina?
