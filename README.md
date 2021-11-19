@@ -1,5 +1,8 @@
 ## 	:hourglass_flowing_sand: Em Construção :hourglass_flowing_sand:
 ## Muito obrigado por acessar este repositorio!:grinning:
+
+### Teste a aplicação agora :smile: : https://felipefloresweb.github.io/PokemonGame/
+
 ## Como sempre gostei de explorar a programação, decidi criar este projeto pessoal para explorar a minha criatividade e também os meus conhecimentos sobre as seguintes tecnologias:
 - JavaScript;
 - React;
